@@ -80,8 +80,26 @@ function copyUrl2() {
 
 function togod(msg, key) {
 	var str = CryptoJS.AES.encrypt(msg, key).toString();
+	console.log('togod', msg, str);
 
 	str = str.substring(10);
+	console.log('togod', msg, str);
+
+	var asc_arr = [];
+	var unicode_arr = [];
+	var un_arr = [];
+	var tmp_arr = str.split('');
+	for (var i = 0; i < tmp_arr.length; i++) {
+		asc_arr.push(tmp_arr[i].charCodeAt().toString(16));
+
+		if (i % 2 == 1) {
+			var un = asc_arr[i - 1] + '' + asc_arr[i];
+			unicode_arr.push();
+			un_arr.push(String.fromCharCode(parseInt(un, 16)));
+		}
+	}
+	console.log('togod', tmp_arr, asc_arr, unicode_arr, un_arr);
+	return "佛又曰：" + un_arr.join('');
 
 	str = str.replaceAll("e", "啰");
 	str = str.replaceAll("E", "羯");
@@ -149,12 +167,15 @@ function togod(msg, key) {
 	str = str.replaceAll("/", "输");
 	str = str.replaceAll("=", "漫");
 
+	console.log('togod', msg, str);
 	return "佛又曰：" + str;
 }
 
 function toman(msg, key) {
 
 	str = msg.substring(4);
+
+	console.log('toman', msg, str);
 
 	str = str.replaceAll("啰", "e");
 	str = str.replaceAll("羯", "E");
@@ -224,6 +245,7 @@ function toman(msg, key) {
 
 	var st = CryptoJS.AES.decrypt("U2FsdGVkX1" + str, key).toString(CryptoJS.enc.Utf8);
 
+	console.log('toman', msg, str, st);
 
 	return st;
 }
