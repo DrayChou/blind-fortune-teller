@@ -1,4 +1,4 @@
-# talk-with-buddha（瞎子算命）
+# blind-fortune-teller（瞎子算命）
 
 一个加密应用的Web。
 
